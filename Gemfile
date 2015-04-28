@@ -8,7 +8,7 @@ gem 'sqlite3'
 
 #gem 'devise'
 
-#gem 'foundation-rails','~> 5.4.5.0'
+gem 'foundation-rails','~> 5.4.5.0'
 
 gem 'better_errors'
 # Use SCSS for stylesheets
