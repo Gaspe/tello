@@ -34,10 +34,33 @@
                   <%= link_to 'Members', members_path %>
                </li>
              </ul>
+             <!-- Right Nav Section -->
+             <ul class="right">
+                <%if member_signed_in?%>
+                   <li>
+                       <%= link_to current_member.name, edit_member_registration_path %>
+                   </li>
+                   <li>
+                       <%= link_to 'Log Out', destroy_member_session_path, method: :delete %>
+                   </li>
+                   <%else%>
+                  <li>
+                       <%= link_to 'Sign Up', new_member_registration_path %>
+                   </li>
+                   <li>
+                       <%= link_to 'Sign In', new_member_session_path%>
+                   </li>
+                   <%end%></ul>
          </section>
              </nav>
-      </div>
+             <%flash.each do |type, message|%>
+             <div data-alert class="alert-box radius <%=flash_class type %>">
+             <%=message%>
+              <a href="#" class="close">&times </a>
+             </div>
+         <%end%>
       <%=yield%>
+      </div>
    </div>
     <%= javascript_include_tag "application" %>
   </body>

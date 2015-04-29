@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  before_filter :get_members
   # GET /tasks
   # GET /tasks.json
   def index
@@ -10,6 +10,12 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+     @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @ptask }
+    end
   end
 
   # GET /tasks/new
@@ -70,5 +76,8 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:title, :description, :duration, :start_date, :finish_date, :user_id, :isdone)
+    end
+    def get_members
+       @members = Member.all.map {|member| [member.name, member.id]}
     end
 end

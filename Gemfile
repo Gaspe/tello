@@ -6,7 +6,7 @@ gem 'rails', '4.1.10'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-#gem 'devise'
+gem 'devise'
 
 gem 'foundation-rails','~> 5.4.5.0'
 
