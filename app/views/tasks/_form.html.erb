@@ -30,9 +30,10 @@
     <%= f.label :finish_date %><br>
     <%= f.date_select :finish_date %>
   </div>
+
   <div class="field">
     <%= f.label :user_id %><br>
-        <%= f.select :user_id, options_for_select(@members) %>
+    <%= f.select :user_id, options_for_select(@members) %>
   </div>
   <div class="field">
     <%= f.label :isdone %><br>

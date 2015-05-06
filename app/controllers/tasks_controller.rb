@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :get_members
+   before_filter :get_members
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_member!, only: [:new, :create, :edit, :update, :destroy]
+ 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @tasks = Task.all.order(finish_date: :desc)
   end
 
   # GET /tasks/1
@@ -22,6 +23,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    
   end
 
   # GET /tasks/1/edit
@@ -32,7 +34,6 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
